@@ -1,6 +1,6 @@
 {
     "$schema": "http://json-schema.org/schema",
-    "$id": "HelloSchematics",
+    "$id": "HelloWorldSchema",
     "title": "Hello Schema",
     "description": "Generate a file of JavaScript",
     "type": "object",
@@ -22,6 +22,10 @@
                 {"value":"will","label":"will"}
             ]
         }
+      },
+      "project":{
+        "type":"string",
+        "description": "Generate in specific Angular CLI workspace project"
       }
     },
     "required": [
