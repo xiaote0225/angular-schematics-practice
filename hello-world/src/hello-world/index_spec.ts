@@ -87,7 +87,7 @@ describe('hello-world', () => {
     ).toPromise();
   })
 
-  it('成功在预设专案路径下产出档案',async () => {
+  it('成功在预设专案路径下产出component,并将其加到AppModule的declarations里',async () => {
     const options: HelloSchematics = {...defaultOptions};
     // const runner = new SchematicTestRunner('schematics',collectionPath);
     // let appTree = await runner.runExternalSchematicAsync(
@@ -102,15 +102,15 @@ describe('hello-world', () => {
     //   appOptions,
     //   appTree
     // ).toPromise();
-
-    
     const tree = await runner.runSchematicAsync('hello-world',options,appTree).toPromise();
-    
     expect(tree.files).toContain('/projects/hello/src/app/feature/hello-leo-chen.component.ts');
-    
+    const moduleContent = tree.readContent('/projects/hello/src/app/app.module.ts');
+    expect(moduleContent).toMatch(/import.*HelloLeoChen.*from '.\/feature\/hello-leo-chen.component'/);
+    expect(moduleContent).toMatch(/declarations:\s*\[[^\]]+?,\r?\n\s+HelloLeoChenComponent\r?\n/m);
+
   });
 
-  it('成功在 "world" 专案路径下产出档案',async () => {
+  it('成功在 "world" 专案路径下产出Component,并将其加到AppModule的declarations里',async () => {
     // const options: HelloSchematics = {name: 'feature/Leo Chen',project:'world'};
     // const runner = new SchematicTestRunner('schematics',collectionPath);
     // let appTree = await runner.runExternalSchematicAsync(
@@ -139,7 +139,10 @@ describe('hello-world', () => {
     const tree = await runner.runSchematicAsync('hello-world',options,appTree).toPromise();
 
     expect(tree.files).toContain('/projects/world/src/app/feature/hello-leo-chen.component.ts');
-    
+
+    const moduleContent = tree.readContent('/projects/world/src/app/app.module.ts');
+    expect(moduleContent).toMatch(/import.*HelloLeoChen.*from '.\/feature\/hello-leo-chen.component'/);
+    expect(moduleContent).toMatch(/declarations:\s*\[[^\]]+?,\r?\n\s+HelloLeoChenComponent\r?\n/m);
   });
 
 });
