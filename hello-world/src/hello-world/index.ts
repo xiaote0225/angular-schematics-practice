@@ -9,7 +9,7 @@ import { strings } from '@angular-devkit/core'; //引入strings,所有字串处�
 
 //需要先在终端中输入 'npm install @schematics/angular -S'
 import { parseName } from '@schematics/angular/utility/parse-name';
-import { buildDefaultPath } from '@schematics/angular/utility/workspace';
+import { buildDefaultPath } from '@schematics/angular/utility/project';
 
 export function helloWorld(_options: HelloSchematics): Rule {
   return (_tree: Tree, _context: SchematicContext) => {
