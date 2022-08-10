@@ -1,4 +1,4 @@
-import { apply, mergeWith, move, Rule, SchematicContext, SchematicsException, template, Tree, url } from '@angular-devkit/schematics';
+import { apply, applyTemplates, mergeWith, move, Rule, SchematicContext, SchematicsException, template, Tree, url } from '@angular-devkit/schematics';
 
 import { strings } from '@angular-devkit/core'; //引入strings,所有字串处理函式都在里面
 
@@ -159,7 +159,7 @@ export function helloWorld(_options: HelloSchematics): Rule {
 
     const sourceTemplates = url('./files');
     const sourceParametrizedTemplates = apply(sourceTemplates,[
-      template({
+      applyTemplates({
         ..._options, //使用者所输入的参数
         ...strings, //将这些函式加到规则里，范本语法才能正常运作
         name,  // 原本的 _options.name,避免使用错误的档案名
