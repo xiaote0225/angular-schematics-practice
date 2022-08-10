@@ -1,4 +1,4 @@
-import { apply, applyTemplates, mergeWith, move, Rule, SchematicContext, SchematicsException, template, Tree, url } from '@angular-devkit/schematics';
+import { apply, applyTemplates, mergeWith, move, Rule, SchematicContext, SchematicsException, Tree, url } from '@angular-devkit/schematics';
 
 import { strings } from '@angular-devkit/core'; //引入strings,所有字串处理函式都在里面
 
